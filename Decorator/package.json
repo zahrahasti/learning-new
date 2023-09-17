@@ -1,0 +1,20 @@
+{
+  "name": "decorator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "exports":"./main.js",
+  "type": "module",
+  "imports": {
+    "#dep": {
+      "node": "dep-node-native",
+      "default": "./index.js"
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+
+  "author": "",
+  "license": "ISC"
+}
