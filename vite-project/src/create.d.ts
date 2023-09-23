@@ -1,0 +1,1 @@
+export declare function  double(num:number):number;
