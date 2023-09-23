@@ -1,34 +1,62 @@
-<!-- <script>
-    import { createEventDispatcher } from "svelte";
-    const dispach=createEventDispatcher();
-
-let id,password;
-const handleUserDetails=function(){
-    const user={
-        id,
-        password
+ <script>
+     import Button from "./Button.svelte";
+     import { createEventDispatcher } from "svelte";
+     let fields={question:"",answerA:"",answerB:""};
+     let valid=false;
+     let errors={question:"",answerA:"",answerB:""}
+     const dispatch=createEventDispatcher();
+    //  const dispatch=createEventDispatcher()
+     const addData=()=>{
+      valid=true;
+      if(fields.question.trim().length<5){
+        valid=false;
+         errors.question="Question can`t be at least 5 charecter"
+      }else {
+        errors.question=""
+      }
+      if(fields.answerA.trim().length<1){
+        console.log("a is emprty");
+        valid=false;
+        errors.answerA="Answer A is empty"
+      }else {
+        errors.answerA=""
+      }  
+      if(fields.answerB.trim().length<1){
+        valid=false;
+        errors.answerB="Answer B is empty"
+      }else {
+        errors.answerB=""
+      }
+      if(valid){
+        console.log(fields);
+        dispatch("add",fields)
+        
+      }
     }
-    dispach("addUser",user)
-}
-</script>
+ </script>
 
 
-<form on:submit|preventDefault={handleUserDetails}>
+<form on:submit|preventDefault={addData}>
+    <label>Question</label>
+    <input type="text" placeholder="question..." bind:value={fields.question}>
+    <p>{errors.question}</p>
+    <label>Answer A</label>
+    <input type="text" placeholder="answer A..." bind:value={fields.answerA}>
+    <p>{errors.answerA}</p>
+    <label>Answer B</label>
+    <input type="text" placeholder="answer B..." bind:value={fields.answerB}>
+    <p>{errors.answerB}</p>
 
-    <input type="text" bind:value={id}>
-    <input type="text" bind:value={password}>
-    <button type="submit">click</button>
+    <Button type="red">
+        add Form
+    </Button>
 </form>
 
 <style>
-    form{
-        border:5px solid red;
+   form p{
+        color:blue ;
     }
-    *{
+    label{
         color:#fff;
     }
-    input{
-        background:pink;
-        width:6rem;
-    }
-</style> -->
+</style>
